@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+		<style>
+	  body {
+			font-family: Arial;
+	    display: flex;
+	    min-height: 100vh;
+	    flex-direction: column;
+	  }
+		main {
+			flex: 1 0 auto;
+		}
+		li {
+			font-size: 16px;
+		}
+		</style>
+		<meta charset="utf-8" />
+		<title>Ostoslista</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	</head>
+
+	<body>
+		<main>
+			<div id= "obj" class="center container">
+				<div>
+					<h2>Ostoslista by Aleksi Surakka</h2>
+					<ul class="collection with-header">
+						<li class="collection-header"><h5>Lisää ostoslistaan tavaroita, jotka toteuttavat seuraavat säännöt:<h5></li>
+						<li class="collection-item">On pituudeltaan 20 merkkiä pitkä.</li>
+						<li class="collection-item">Sisältää vain isoja/pieniä kirjaimia.</li>
+						<li class="collection-item">Voi sisältää numeroita, pisteitä ja pilkkuja.</li>
+						<li class="collection-item">Käytä välilyönnin sijasta "_".</li>
+					</ul>
+				</div>
+				<div class="input-field col s6">
+					<i class="material-icons prefix">shopping_basket</i>
+					<textarea id="textfield" class="materialize-textarea" v-model="itemName"></textarea>
+					<label for="textfield">Kirjoita tuote</label>
+					<button class="waves-effect waves-light btn" v-on:click="add">Lisää</button>
+				</div>
+				<div class="section">
+					<p v-if="errors.length" class="card-panel red">
+						<b> Korjaa seuraavat virheet:</b>
+						<ul class="errors collection white-text">
+							<li v-for="error in errors" class="collection-item red darken-4">{{ error }}</li>
+						</ul>
+					</p>
+					<ul class="collection" v-if="items.length">
+						<li class="collection-item blue lighten-2" v-for="(item, index) in items">
+							{{ item }}
+							<button class="btn-floating btn-small red" v-on:click="removeItem(index)"><i class="material-icons">clear</i></button>
+						</li>
+					</ul>
+					<div v-if="!items.length">Ostoslista tyhjä</div>
+				</div>
+			</div>
+		</main>
+		<footer class="page-footer">
+
+			<div class="footer-copyright">
+				<div class="container">
+				© 2019 Copyright
+				<a class="grey-text text-lighten-4 right">Aleksi.Surakka@student.lut.fi</a>
+				</div>
+			</div>
+		</footer>
+		<script src="scriptit.js"></script>
+	</body>
+</html>
